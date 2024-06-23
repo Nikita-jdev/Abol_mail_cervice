@@ -1,0 +1,19 @@
+mail_server:
+  version:
+    /api/v1/mail
+
+kafka:
+  bootstrap_servers: localhost:####
+  group_id: mail_service
+  topics:
+    create_account: create_account_topic
+
+telegram:
+  bot:
+    name: giveMessage_bot
+    token: 7156554211:AAHQnjCcKQoShfxEB4TsAU1piUrWxyN2_1s
+
+async:
+  corePoolSize: 10
+  maxPoolSize: 15
+  queueCapacity: 10
