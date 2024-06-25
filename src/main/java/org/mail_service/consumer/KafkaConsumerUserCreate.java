@@ -5,10 +5,10 @@ import org.mail_service.entity.UserDto;
 import org.mail_service.service.TelegramService;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.support.Acknowledgment;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-@Service
+@Component
 @RequiredArgsConstructor
 public class KafkaConsumerUserCreate extends
         AbstractKafkaConsumer<UserDto> {

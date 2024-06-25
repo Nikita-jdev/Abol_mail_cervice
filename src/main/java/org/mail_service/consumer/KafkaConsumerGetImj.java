@@ -1,7 +1,7 @@
 package org.mail_service.consumer;
 
 import lombok.RequiredArgsConstructor;
-import org.mail_service.entity.KafkaEventAddImj;
+import org.mail_service.entity.KafkaEventGetImj;
 import org.mail_service.service.TelegramService;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.support.Acknowledgment;
@@ -10,16 +10,16 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Component
 @RequiredArgsConstructor
-public class KafkaConsumerAddImj extends
-        AbstractKafkaConsumer<KafkaEventAddImj> {
+public class KafkaConsumerGetImj extends
+        AbstractKafkaConsumer<KafkaEventGetImj> {
 
     private final TelegramService telegramService;
 
     @Transactional
-    @KafkaListener(topics = "${kafka.topics.add_imj}")
+    @KafkaListener(topics = "${kafka.topics.get_imj}")
     public void addNewUser(String message, Acknowledgment acknowledgement) {
-        KafkaEventAddImj kafkaEventAddImj = listener(message, KafkaEventAddImj.class);
-        telegramService.addImjMessage(kafkaEventAddImj);
+        KafkaEventGetImj kafkaEventGetImj = listener(message, KafkaEventGetImj.class);
+        telegramService.getImjMessage(kafkaEventGetImj);
         acknowledgement.acknowledge();
     }
 }

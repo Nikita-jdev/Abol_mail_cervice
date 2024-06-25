@@ -3,6 +3,7 @@ package org.mail_service.service;
 import lombok.RequiredArgsConstructor;
 import org.mail_service.config.TelegramBotConfig;
 import org.mail_service.entity.KafkaEventAddImj;
+import org.mail_service.entity.KafkaEventGetImj;
 import org.mail_service.entity.UserDto;
 import org.springframework.stereotype.Service;
 
@@ -20,5 +21,11 @@ public class TelegramService {
         String messageText = "In backed " + kafkaEventAddImj.getBucketName()
                              + "added images with weight " + kafkaEventAddImj.getImjSize();
         telegramBotConfig.send(kafkaEventAddImj.getUserDto(), messageText);
+    }
+
+    public void getImjMessage(KafkaEventGetImj kafkaEventGetImj) {
+        String messageText = "You downloaded the file " + kafkaEventGetImj.getImjName()
+                             + "weight " + kafkaEventGetImj.getImjSize();
+        telegramBotConfig.send(kafkaEventGetImj.getUserDto(), messageText);
     }
 }
